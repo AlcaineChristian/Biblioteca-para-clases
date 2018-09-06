@@ -1,97 +1,134 @@
-#include <stdio.h>
+#include <stdio_ext.h>
 #include <stdlib.h>
+#include "utn.h"
 
-/**
- * \brief Solicita un número al usuario y devuelve el resultado
- * \param mensaje Es el mensaje a ser mostrado
- * \return El número ingresado por el usuario
- *
- */
 
-float utn_getFloat(char mensaje[])
+static int getInt(int* pResultado);//static sirve para que sea privada de este archivo utn.c
+
+int utn_getEntero(int* pNumero,int intentos, char* mensaje, char* mensajeError,int max, int min)
 {
-    float auxiliar;
-    printf("%s",mensaje);
-    scanf("%f",&auxiliar);
-    return auxiliar;
-}
-
-/**
-* \brief Realiza una suma con dos numeros antes pedidos
-* \param mensaje Es el mensaje a mostrar
-* \param numeroUno Es uno de los numeros a utilizar
-* \param numeroDos Es el otro numero a utilizar
-* \return La suma de ambos numeros
-*
-*/
-
-float utn_getSuma(float numeroUno,float numeroDos)
-{
-    float suma;
-    suma = numeroUno + numeroDos;
-    return suma;
-}
-/**
-* \brief Realiza una resta con dos numeros antes pedidos
-* \param mensaje Es el mensaje a mostrar
-* \param numeroUno Es uno de los numeros a utilizar
-* \param numeroDos Es el otro numero a utilizar
-* \return La resta de ambos numeros
-*
-*/
-
-float utn_getResta(float numeroUno,float numeroDos)
-{
-    float resta;
-    resta = numeroUno - numeroDos;
-    return resta;
-}
-/**
-* \brief Realiza una multiplicacion con dos numeros antes pedidos
-* \param mensaje Es el mensaje a mostrar
-* \param numeroUno Es uno de los numeros a utilizar
-* \param numeroDos Es el otro numero a utilizar
-* \return La multiplicacion de ambos numeros
-*
-*/
-
-float utn_getMultiplicacion(float numeroUno,float numeroDos)
-{
-    float multiplicacion;
-    multiplicacion = numeroUno * numeroDos;
-    return multiplicacion;
-}
-/**
-* \brief Realiza una division con dos numeros antes pedidos
-* \param mensaje Es el mensaje a mostrar
-* \param numeroUno Es uno de los numeros a utilizar
-* \param numeroDos Es el otro numero a utilizar
-* \return La division de ambos numeros
-*
-*/
-
-float utn_getDivision(float numeroUno,float numeroDos)
-{
-    float division;
-    division = numeroUno / numeroDos;
-    return division;
-}
-/**
-* \brief Realiza una factorizacion con un numero antes pedido
-* \param mensaje Es el mensaje a mostrar
-* \param numero Es el numero a utilizar
-* \return La factorizacion del numero
-*
-*/
-
-float utn_getFactorial(float numero)
-{
-    float factorial;
-    float i;
-    factorial = 1;
-    for (i=1;i<=numero;i++)
+    int retorno =-1;
+    int auxiliar;
+    int i=0;
+    while(i<intentos)
     {
-        factorial = factorial * i;
+
+        printf("%s\n",mensaje);
+        if(getInt(&auxiliar) == 0)
+        {
+            if(auxiliar >= min && auxiliar <= max)
+            {
+                *pNumero = auxiliar;
+                retorno = 0;
+                break;
+            }
+            else
+            {
+                printf(mensajeError);
+                i++;
+
+            }
+        }else
+        {
+            printf(mensajeError);
+            __fpurge(stdin);
+            i++;
+            printf("%d",i);
+
+        }
+
     }
-    return factorial;
+
+
+    return retorno;
+
+}
+
+static int getInt(int* pResultado)
+{
+    int retorno = -1;
+    int auxResultado;
+    int valorScanf;
+
+
+    valorScanf=scanf("%d",&auxResultado);
+    if(valorScanf==1)
+    {
+
+        *pResultado=auxResultado;
+        retorno=0;
+    }
+
+    return retorno;
+}
+
+int utn_getFlotante(float* pNumero,int intentos , char* mensajeOk , char* mensajeError, int max, int min)
+{
+    float auxFloat;
+    int resultadoScanf;
+    int retorno = -1;
+
+    do
+      {
+         printf("\nIngrese el numero");
+         resultadoScanf=scanf("%f",&auxFloat);
+
+         if(resultadoScanf==1)
+         {
+             if(auxFloat<max&&auxFloat>min)
+             {
+                 *pNumero=auxFloat;
+                 retorno=0;
+                 printf("\n%s",mensajeOk);
+                 break;
+             }
+         }
+         else
+         {
+             printf(mensajeError);
+             fflush(stdin);
+             intentos--;
+         }
+
+       }while(intentos>0);
+
+       return retorno;
+
+}
+
+
+int mostrarArray(int* pArray, int limite)
+{
+    int i;
+    for(i=0;i<limite;i++)
+    {
+        printf("\nIndex: %d - Value: %d - Add: %p",i,pArray[i],&pArray[i]);
+
+    }
+
+return 0;
+
+}
+
+int mostrarArrayMaximo(int* pArray, int limite)
+{
+    int i;
+    int iMax;
+    int maximo=pArray[0];
+
+    for(i=0;i<limite;i++)
+    {
+        if(pArray[i]>maximo)
+        {
+            iMax=i;
+        }
+    }
+
+
+printf("\nMAXIMO\nIndex: %d - Value: %d - Add: %p",iMax,pArray[iMax],&pArray[iMax]);
+
+
+
+return 0;
+
 }
