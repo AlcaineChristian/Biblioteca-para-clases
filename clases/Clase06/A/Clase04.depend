@@ -1,0 +1,21 @@
+# depslib dependency file v1.0
+1536265861 source:d:\ernesto\googledrive\labo1\2018\2do_cuat\clase_06_ernesto\clase04\clase04\main.c
+	<stdlib.h>
+	"utn.h"
+
+1536265861 
+
+1535674282 d:\ernesto\googledrive\labo1\2018\2do_cuat\clase_06_ernesto\clase04\clase04\utn.h
+
+1536276422 source:/home/alumno/Escritorio/Clase04_para_clase06/Clase04/main.c
+	<stdlib.h>
+	<stdio_ext.h>
+	"utn.h"
+
+1535674282 /home/alumno/Escritorio/Clase04_para_clase06/Clase04/utn.h
+
+1536277076 source:/home/alumno/Escritorio/Clase04_para_clase06/Clase04/utn.c
+	<stdio_ext.h>
+	<stdlib.h>
+	"utn.h"
+
