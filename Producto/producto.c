@@ -3,6 +3,7 @@
 #include <string.h>
 #include <time.h>
 #include "producto.h"
+#define CANTIDAD 200
 
 static int getFloat(float*pBuffer);
 static int getString(char* bufferString,int limite);
@@ -10,6 +11,7 @@ static int isFloat(char* pBuffer);
 static int getInt(int*pBuffer);
 static int isInt(char *pBuffer);
 static int isLetras(char*pBuffer);
+Producto productos[CANTIDAD];
 
 int utn_getEntero(int* pEntero,int reintentos,char* msg,char*msgError,int min,int max){
     int retorno = -1;
@@ -316,13 +318,87 @@ int inicializarArray(Producto* pBuffer,int limite)
     }
     return 0;
 }
-int imprimirArray(Producto* pBuffer,int limite)
+int imprimirArray(Producto* pBuffer,int indice)
+{
+        printf("\nNombre: %s\n",pBuffer[indice].nombre);
+        printf("\nDescripcion: %s\n",pBuffer[indice].descripcion);
+        printf("\nPrecio: %f\n",pBuffer[indice].precio);
+
+    return 0;
+}
+
+int buscarIndiceVacio(Producto* pBuffer,int limite)
 {
     int i;
     for(i=0;i<limite;i++)
     {
-        printf("%d\n",pBuffer[i].isEmpy=1);
+        if(pBuffer[i].isEmpy==1)
+        {
+            break;
+
+        }else if(pBuffer[i].isEmpy==0)
+        {
+            printf("\nIndice: %d\n",i);
+            printf("\nNombre: %s\n",pBuffer[i].nombre);
+            printf("\nDescripcion: %s\n",pBuffer[i].descripcion);
+            printf("\nPrecio: %f\n",pBuffer[i].precio);
+
+        }
+
     }
+    return 0;
+
+}
+
+int imprimirProductosCargados(Producto* pBuffer,int limite)
+{
+    int i;
+    for(i=0;i<limite;i++)
+    {
+        if(pBuffer[i].isEmpy==0)
+        {
+            printf("\nIndice: %d\n",i);
+            printf("\nNombre: %s\n",pBuffer[i].nombre);
+            printf("\nDescripcion: %s\n",pBuffer[i].descripcion);
+            printf("\nPrecio: %f\n",pBuffer[i].precio);
+
+        }else{
+        break;
+        }
+
+    }
+    return 0;
+
+}
+
+int menu(Producto* pBuffer,int limite)
+{
+
+    int aux;
+    menu:
+    printf("\n\n1-Cargar un producto\n2-Imprimir lista de productos cargados\n3-Salir\n");
+    __fpurge(stdin);
+    scanf("%d",&aux);
+    switch(aux)
+    {
+        case 1:
+            cargaProducto(pBuffer,2);
+            goto menu;
+            break;
+        case 2:
+            buscarIndiceVacio(pBuffer,CANTIDAD);
+            goto menu;
+            break;
+        case 3:
+            break;
+        default:
+            printf("Opcion no valida, ingrese opcion valida");
+            goto menu;
+            break;
+
+    }
+
+
     return 0;
 }
 

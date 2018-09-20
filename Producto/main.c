@@ -5,10 +5,21 @@
 
 int main()
 {
+
+
     Producto productos[CANTIDAD];
+    /*printf("\nMenu Principal\n\na-Carga de producto\nb-Imprimir lista de productos cargados\n");
+    scanf("Opcion%c")*/
+
+
+
     inicializarArray(productos,CANTIDAD);
-    imprimirArray(productos,CANTIDAD);
-    cargaProducto(productos,6);
+    menu(productos,CANTIDAD);
+    /*cargaProducto(productos,2);
+    imprimirArray(productos,2);
+    buscarIndiceVacio(productos,CANTIDAD,&indice);*/
+
+
 
 
     return 0;

@@ -15,9 +15,14 @@ typedef struct {
 
 int inicializarArray(Producto* pBuffer,int limite);
 
-int imprimirArray(Producto* pBuffer,int limite);
+int imprimirArray(Producto* pBuffer,int indice);
 
 int cargaProducto(Producto* pBuffer,int indice);
+
+int buscarIndiceVacio(Producto* pBuffer,int limite);
+
+int menu(Producto* pBuffer,int limite);
+
 
 /**
     utn_getentero : Pide un numero entero al usuario
