@@ -3,7 +3,7 @@
 #include <string.h>
 #include <time.h>
 #include "producto.h"
-#define CANTIDAD 200
+
 
 static int getFloat(float*pBuffer);
 static int getString(char* bufferString,int limite);
@@ -11,7 +11,7 @@ static int isFloat(char* pBuffer);
 static int getInt(int*pBuffer);
 static int isInt(char *pBuffer);
 static int isLetras(char*pBuffer);
-Producto productos[CANTIDAD];
+
 
 int utn_getEntero(int* pEntero,int reintentos,char* msg,char*msgError,int min,int max){
     int retorno = -1;
@@ -299,13 +299,13 @@ int utn_altaPersona(Persona* pPersona,int reintentos,int lenString,int min,int m
     return 0;
 }*/
 
-int cargaProducto(Producto* pBuffer,int indice)
+int cargaProducto(Producto* pBuffer,int limite)
 {
-    utn_getLetras(pBuffer[indice].nombre,32,3,"\nIngrese nombre\n","\nError\n");
+    utn_getLetras(pBuffer[limite].nombre,32,3,"\nIngrese nombre\n","\nError\n");
     printf("\nIngrese descripcion\n");
-    getString(pBuffer[indice].descripcion,128);
-    utn_getFloat(&pBuffer[indice].precio,3,"\nIngrese precio\n","\nError\n",0,999999999);
-    pBuffer[indice].isEmpy=0;
+    getString(pBuffer[limite].descripcion,128);
+    utn_getFloat(&pBuffer[limite].precio,3,"\nIngrese precio\n","\nError\n",0,999999999);
+    pBuffer[limite].isEmpy=0;
     return 0;
 }
 
@@ -334,15 +334,12 @@ int buscarIndiceVacio(Producto* pBuffer,int limite)
     {
         if(pBuffer[i].isEmpy==1)
         {
+            utn_getLetras(pBuffer[i].nombre,32,3,"\nIngrese nombre\n","\nError\n");
+            printf("\nIngrese descripcion\n");
+            getString(pBuffer[i].descripcion,128);
+            utn_getFloat(&pBuffer[i].precio,3,"\nIngrese precio\n","\nError\n",0,999999999);
+            pBuffer[i].isEmpy=0;
             break;
-
-        }else if(pBuffer[i].isEmpy==0)
-        {
-            printf("\nIndice: %d\n",i);
-            printf("\nNombre: %s\n",pBuffer[i].nombre);
-            printf("\nDescripcion: %s\n",pBuffer[i].descripcion);
-            printf("\nPrecio: %f\n",pBuffer[i].precio);
-
         }
 
     }
@@ -382,11 +379,11 @@ int menu(Producto* pBuffer,int limite)
     switch(aux)
     {
         case 1:
-            cargaProducto(pBuffer,2);
+            buscarIndiceVacio(pBuffer,limite);
             goto menu;
             break;
         case 2:
-            buscarIndiceVacio(pBuffer,CANTIDAD);
+            imprimirProductosCargados(pBuffer,limite);
             goto menu;
             break;
         case 3:

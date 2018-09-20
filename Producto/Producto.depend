@@ -13,3 +13,17 @@
 	<time.h>
 	"producto.h"
 
+1537406283 source:/home/alumno/Escritorio/Biblioteca-para-clases-master/Producto/main.c
+	<stdio_ext.h>
+	<stdlib.h>
+	"producto.h"
+
+1537406283 /home/alumno/Escritorio/Biblioteca-para-clases-master/Producto/producto.h
+
+1537479772 source:/home/alumno/Escritorio/Biblioteca-para-clases-master/Producto/producto.c
+	<stdio_ext.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	"producto.h"
+
