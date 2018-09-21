@@ -1,0 +1,14 @@
+# depslib dependency file v1.0
+1537484738 source:/home/alumno/Escritorio/Parcial 1 Practica/Parcial/Parcial.c
+	<stdio_ext.h>
+	<stdlib.h>
+	<string.h>
+	"Parcial.h"
+
+1537484774 /home/alumno/Escritorio/Parcial 1 Practica/Parcial/Parcial.h
+
+1537484784 source:/home/alumno/Escritorio/Parcial 1 Practica/Parcial/main.c
+	<stdio_ext.h>
+	<stdlib.h>
+	"Parcial.h"
+
